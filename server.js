@@ -2,10 +2,13 @@
  *I am the server
  */
 
+/*
+This is how to include/require modules
+var sleep = require('sleep');
+*/
+
 var qs = require('querystring');
 var http = require('http');
-var sleep = require('sleep');
-
 Object.size = function(obj) {
     var size = 0, key;
     for (key in obj) {
@@ -28,13 +31,11 @@ var processRequest = function(req, callback) {
 
 http.createServer(function (req, res) {
 		res.writeHead(200, {'Content-Type': 'text/plain'});
+        res.write(JSON.stringify(req.headers));
+        res.write(JSON.stringify(req.body));
 		processRequest(req, function(data) {
 			var controllerRequest = new Object();
-			console.log(data);
-				res.end(Jdata);
+                res.write("hello");
+				res.end();
 			});
-			
-
-		});
-
 		}).listen(8080);
